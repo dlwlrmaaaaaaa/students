@@ -1,0 +1,42 @@
+C:\Project\Data Entry\Data Entry\bin\Debug\Data Entry.exe.config
+C:\Project\Data Entry\Data Entry\bin\Debug\Data Entry.exe
+C:\Project\Data Entry\Data Entry\bin\Debug\Data Entry.pdb
+C:\Project\Data Entry\Data Entry\obj\Debug\Data Entry.csproj.AssemblyReference.cache
+C:\Project\Data Entry\Data Entry\obj\Debug\Data_Entry.Form1.resources
+C:\Project\Data Entry\Data Entry\obj\Debug\Data_Entry.Properties.Resources.resources
+C:\Project\Data Entry\Data Entry\obj\Debug\Data Entry.csproj.GenerateResource.cache
+C:\Project\Data Entry\Data Entry\obj\Debug\Data Entry.csproj.CoreCompileInputs.cache
+C:\Project\Data Entry\Data Entry\obj\Debug\Data Entry.exe
+C:\Project\Data Entry\Data Entry\obj\Debug\Data Entry.pdb
+C:\Project\Data Entry\Data Entry\bin\Debug\BouncyCastle.Crypto.dll
+C:\Project\Data Entry\Data Entry\bin\Debug\Google.Protobuf.dll
+C:\Project\Data Entry\Data Entry\bin\Debug\K4os.Compression.LZ4.dll
+C:\Project\Data Entry\Data Entry\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Project\Data Entry\Data Entry\bin\Debug\K4os.Hash.xxHash.dll
+C:\Project\Data Entry\Data Entry\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Project\Data Entry\Data Entry\bin\Debug\MySql.Data.dll
+C:\Project\Data Entry\Data Entry\bin\Debug\System.Buffers.dll
+C:\Project\Data Entry\Data Entry\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Project\Data Entry\Data Entry\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Project\Data Entry\Data Entry\bin\Debug\System.IO.Pipelines.dll
+C:\Project\Data Entry\Data Entry\bin\Debug\System.Memory.dll
+C:\Project\Data Entry\Data Entry\bin\Debug\System.Numerics.Vectors.dll
+C:\Project\Data Entry\Data Entry\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Project\Data Entry\Data Entry\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Project\Data Entry\Data Entry\bin\Debug\ZstdSharp.dll
+C:\Project\Data Entry\Data Entry\bin\Debug\BouncyCastle.Crypto.xml
+C:\Project\Data Entry\Data Entry\bin\Debug\Google.Protobuf.pdb
+C:\Project\Data Entry\Data Entry\bin\Debug\Google.Protobuf.xml
+C:\Project\Data Entry\Data Entry\bin\Debug\K4os.Compression.LZ4.xml
+C:\Project\Data Entry\Data Entry\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Project\Data Entry\Data Entry\bin\Debug\K4os.Hash.xxHash.xml
+C:\Project\Data Entry\Data Entry\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Project\Data Entry\Data Entry\bin\Debug\MySql.Data.xml
+C:\Project\Data Entry\Data Entry\bin\Debug\System.Buffers.xml
+C:\Project\Data Entry\Data Entry\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Project\Data Entry\Data Entry\bin\Debug\System.IO.Pipelines.xml
+C:\Project\Data Entry\Data Entry\bin\Debug\System.Memory.xml
+C:\Project\Data Entry\Data Entry\bin\Debug\System.Numerics.Vectors.xml
+C:\Project\Data Entry\Data Entry\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Project\Data Entry\Data Entry\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Project\Data Entry\Data Entry\obj\Debug\Data Entry.csproj.CopyComplete
