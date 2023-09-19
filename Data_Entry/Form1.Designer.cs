@@ -47,7 +47,7 @@
             this.cmdDelete = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
             this.ListView = new System.Windows.Forms.ListView();
-            this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LvID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -196,6 +196,7 @@
             this.cmdEdit.TabIndex = 16;
             this.cmdEdit.Text = "EDIT";
             this.cmdEdit.UseVisualStyleBackColor = true;
+            this.cmdEdit.Click += new System.EventHandler(this.cmdEdit_Click);
             // 
             // cmdUpdate
             // 
@@ -205,6 +206,7 @@
             this.cmdUpdate.TabIndex = 17;
             this.cmdUpdate.Text = "UPDATE";
             this.cmdUpdate.UseVisualStyleBackColor = true;
+            this.cmdUpdate.Click += new System.EventHandler(this.cmdUpdate_Click);
             // 
             // cmdDelete
             // 
@@ -224,11 +226,12 @@
             this.cmdCancel.TabIndex = 19;
             this.cmdCancel.Text = "CANCEL";
             this.cmdCancel.UseVisualStyleBackColor = true;
+            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
             // ListView
             // 
             this.ListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.ID,
+            this.LvID,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
@@ -244,11 +247,13 @@
             this.ListView.TabIndex = 20;
             this.ListView.UseCompatibleStateImageBehavior = false;
             this.ListView.View = System.Windows.Forms.View.Details;
+            this.ListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.ListView_ItemSelectionChanged);
+            this.ListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListView_MouseClick);
             // 
-            // ID
+            // LvID
             // 
-            this.ID.Text = "ID";
-            this.ID.Width = 30;
+            this.LvID.Text = "ID";
+            this.LvID.Width = 30;
             // 
             // columnHeader2
             // 
@@ -286,6 +291,7 @@
             // 
             // cboCourse
             // 
+            this.cboCourse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCourse.FormattingEnabled = true;
             this.cboCourse.Location = new System.Drawing.Point(153, 219);
             this.cboCourse.Name = "cboCourse";
@@ -294,6 +300,7 @@
             // 
             // cboYear
             // 
+            this.cboYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboYear.FormattingEnabled = true;
             this.cboYear.Location = new System.Drawing.Point(153, 263);
             this.cboYear.Name = "cboYear";
@@ -355,7 +362,7 @@
         private System.Windows.Forms.Button cmdDelete;
         private System.Windows.Forms.Button cmdCancel;
         private System.Windows.Forms.ListView ListView;
-        private System.Windows.Forms.ColumnHeader ID;
+        private System.Windows.Forms.ColumnHeader LvID;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
