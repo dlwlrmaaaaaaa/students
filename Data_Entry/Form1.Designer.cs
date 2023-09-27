@@ -143,6 +143,7 @@
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(216, 26);
             this.txtLastName.TabIndex = 8;
+            this.txtLastName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLastName_KeyPress);
             // 
             // txtAddress
             // 
@@ -159,6 +160,7 @@
             this.txtMiddleName.Name = "txtMiddleName";
             this.txtMiddleName.Size = new System.Drawing.Size(216, 26);
             this.txtMiddleName.TabIndex = 10;
+            this.txtMiddleName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMiddleName_KeyPress);
             // 
             // txtFirstName
             // 
@@ -167,6 +169,7 @@
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(216, 26);
             this.txtFirstName.TabIndex = 11;
+            this.txtFirstName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFirstName_KeyPress);
             // 
             // cmdNew
             // 
@@ -248,7 +251,7 @@
             this.ListView.UseCompatibleStateImageBehavior = false;
             this.ListView.View = System.Windows.Forms.View.Details;
             this.ListView.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.ListView_ItemSelectionChanged);
-            this.ListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListView_MouseClick);
+            this.ListView.DoubleClick += new System.EventHandler(this.ListView_DoubleClick);
             // 
             // LvID
             // 
@@ -257,13 +260,13 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "First Name";
+            this.columnHeader2.Text = "Last Name";
             this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader2.Width = 70;
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "Last Name";
+            this.columnHeader3.Text = "First Name";
             this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader3.Width = 70;
             // 
@@ -277,17 +280,19 @@
             // 
             this.columnHeader5.Text = "Address";
             this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader5.Width = 70;
+            this.columnHeader5.Width = 100;
             // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "Course";
             this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader6.Width = 160;
             // 
             // columnHeader7
             // 
             this.columnHeader7.Text = "Year";
             this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader7.Width = 50;
             // 
             // cboCourse
             // 

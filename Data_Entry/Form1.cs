@@ -30,13 +30,37 @@ namespace Data_Entry
             myconn.Open();
             loadCourse(cboCourse);
             loadYear(cboYear);
-            loadData();
+            loadStudents(ListView);
+           // loadData();
             SBtnDisable();
             txtBoxDisabled();
         
         }
-      
-        public void loadData()
+
+        private void loadStudents(System.Windows.Forms.ListView lvwlist)
+        {
+            string sql = "SELECT * FROM tbl_students order by id";
+            myconn = new MySqlConnection(mycon);
+            myconn.Open();
+            mycommand = new MySqlCommand(sql, myconn);         
+            rdr = mycommand.ExecuteReader();
+            ListView.Items.Clear();
+            if (rdr.HasRows)
+            {
+                while (rdr.Read())
+                {
+                     lvwlist.Items.Add(rdr.GetString(0));
+                    lvwlist.Items[lvwlist.Items.Count - 1].SubItems.Add(rdr[1].ToString());
+                    lvwlist.Items[lvwlist.Items.Count - 1].SubItems.Add(rdr[2].ToString());
+                    lvwlist.Items[lvwlist.Items.Count - 1].SubItems.Add(rdr[3].ToString());
+                    lvwlist.Items[lvwlist.Items.Count - 1].SubItems.Add(rdr[4].ToString());
+                    lvwlist.Items[lvwlist.Items.Count - 1].SubItems.Add(rdr[5].ToString());
+                    lvwlist.Items[lvwlist.Items.Count - 1].SubItems.Add(rdr[6].ToString());
+
+                }
+            }
+        }
+      /*  public void loadData()
         {
             string sql = "SELECT * from tbl_students";
             myconn = new MySqlConnection(mycon);
@@ -59,7 +83,7 @@ namespace Data_Entry
             myconn.Close();
             myconn.Dispose();
 
-        }
+        }*/
 
         private void loadCourse(System.Windows.Forms.ComboBox combobox)
         {
@@ -123,11 +147,24 @@ namespace Data_Entry
             txtAddress.Text = "";
             cboCourse.SelectedIndex = -1;
             cboYear.SelectedIndex = -1;
-
+            ListView.Enabled = true;
             cmdSave.Enabled = false;
+            cmdCancel.Enabled = false;
             cmdNew.Enabled = true;
             
         }
+        public void resetNewAll()
+        {
+            txtFirstName.Text = "";
+            txtLastName.Text = "";
+            txtMiddleName.Text = "";
+            txtAddress.Text = "";
+            cboCourse.SelectedIndex = -1;
+            cboYear.SelectedIndex = -1;
+            cmdSave.Enabled = true;
+
+        }
+
 
         public void BtnDisable()
         {
@@ -147,53 +184,53 @@ namespace Data_Entry
             txtID.Enabled = false;
         }
 
-        
 
-        private void ListView_MouseClick(object sender, MouseEventArgs e)
-        {
-            cmdEdit.Enabled = true;
-            cmdDelete.Enabled = true;
-            cmdNew.Enabled = false;
+
+      /* private void ListView_MouseClick(object sender, MouseEventArgs e)
+          {
+              cmdEdit.Enabled = true;
+              cmdDelete.Enabled = true;
+              cmdNew.Enabled = true;
             if (ListView.SelectedItems.Count > 0)
-            {
-                ListViewItem selectedItem = ListView.SelectedItems[0];
-                getID = selectedItem.SubItems[0].Text;
-                try
-                {
-                    string sql = "SELECT * from tbl_students where id=" + Convert.ToInt32(getID);
-                    myconn = new MySqlConnection(mycon);
-                    myconn.Open();
-                    mycommand = new MySqlCommand(sql, myconn);
-                    mycommand.ExecuteNonQuery();
-                    rdr = mycommand.ExecuteReader();
-                    while (rdr.Read())
-                    {
-                        txtID.Text = rdr.GetString(0);
-                        txtLastName.Text = rdr.GetString(1);
-                        txtFirstName.Text = rdr.GetString(2);
-                        txtMiddleName.Text = rdr.GetString(3);
-                        txtAddress.Text = rdr.GetString(4);
-                        cboCourse.Text = rdr.GetString(5);
-                        cboYear.Text = rdr.GetString(6);
-                    }
-                    myconn.Close();
-                    myconn.Dispose();
+              {
+                  ListViewItem selectedItem = ListView.SelectedItems[0];
+                  getID = selectedItem.SubItems[0].Text;
+                  try
+                  {
+                      string sql = "SELECT * from tbl_students where id=" + Convert.ToInt32(getID);
+                      myconn = new MySqlConnection(mycon);
+                      myconn.Open();
+                      mycommand = new MySqlCommand(sql, myconn);
+                      mycommand.ExecuteNonQuery();
+                      rdr = mycommand.ExecuteReader();
+                      while (rdr.Read())
+                      {
+                          txtID.Text = rdr.GetString(0);
+                          txtLastName.Text = rdr.GetString(1);
+                          txtFirstName.Text = rdr.GetString(2);
+                          txtMiddleName.Text = rdr.GetString(3);
+                          txtAddress.Text = rdr.GetString(4);
+                          cboCourse.Text = rdr.GetString(5);
+                          cboYear.Text = rdr.GetString(6);
+                      }
+                      myconn.Close();
+                      myconn.Dispose();
 
 
 
 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An Error Occured: " + ex.Message);
-                }
+                  }
+                  catch (Exception ex)
+                  {
+                      MessageBox.Show("An Error Occured: " + ex.Message);
+                  }
 
 
 
 
-            }
-           
-        }      
+              }
+
+    }*/
         public void txtBoxDisabled()
         {
             txtAddress.Enabled = false;
@@ -219,7 +256,7 @@ namespace Data_Entry
             myconn.Open();
             loadCourse(cboCourse);
             loadYear(cboYear);
-            loadData();
+           // loadData();
             SBtnDisable();
             resetAll();
             txtBoxDisabled();
@@ -228,13 +265,24 @@ namespace Data_Entry
         {
             try
             {
-                string sql = "SELECT max(id) from tbl_students";
+                int sID = 0;
+                string sql = "SELECT * from tbl_students order by id desc";
                 myconn = new MySqlConnection(mycon);
                 myconn.Open();
                 mycommand = new MySqlCommand(sql, myconn);
-                object maxID = mycommand.ExecuteScalar();
+                rdr = mycommand.ExecuteReader();
 
-                if (maxID != null && !maxID.Equals(DBNull.Value))
+                if (rdr.HasRows){
+                    while (rdr.Read())
+                    {
+                        sID = int.Parse(rdr[0].ToString());
+                        int nID = sID + 1;
+                        txtID.Text = nID.ToString();
+                        break;
+                    }
+                }
+
+               /* if (maxID != null && !maxID.Equals(DBNull.Value))
                 {
                     int nextID = Convert.ToInt32(maxID) + 1;
                     txtID.Text = nextID.ToString();
@@ -242,12 +290,14 @@ namespace Data_Entry
                 else
                 {
                     txtID.Text = "1";
-                }
+                }*/
                 myconn.Close();
                 myconn.Dispose();
                 cmdSave.Enabled = true;
                 cmdCancel.Enabled = true;
+                ListView.Enabled = false;
                 BtnDisable();
+                resetNewAll();
                 txtBoxEnabled();
 
             }
@@ -260,17 +310,35 @@ namespace Data_Entry
 
         private void cmdDelete_Click(object sender, EventArgs e)
         {
+           // string sql = "DELETE FROM crud.tbl_students WHERE ID = '" + txtID.Text + "'";
+           // myconn = new MySqlConnection(mycon);
+           // myconn.Open();
+           // mycommand = new MySqlCommand(sql, myconn);
+           // mycommand.ExecuteNonQuery();
             try
             {
-                string sql = "DELETE FROM `tbl_students` WHERE id =" + Convert.ToInt32(getID);
-                myconn = new MySqlConnection(mycon);
-                myconn.Open();
-                mycommand = new MySqlCommand(sql, myconn);
-                mycommand.ExecuteNonQuery();
-                myconn.Close();
+                DialogResult rslt = MessageBox.Show("Do you really want to delete this record?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+               if(rslt == DialogResult.Yes)
+                {
+                    string sql = "DELETE FROM tbl_students WHERE ID = '" + txtID.Text + "'";
+                    myconn = new MySqlConnection(mycon);
+                    myconn.Open();
+                    mycommand = new MySqlCommand(sql, myconn);
+                    mycommand.ExecuteNonQuery();
+                    myconn.Close();
 
-                MessageBox.Show("Record Deleted!");
-                if (ListView.SelectedItems.Count > 0)
+                    MessageBox.Show("Record Deleted!");
+                    loadStudents(ListView);
+                    resetAll();
+                    cmdEdit.Enabled = false;
+                    cmdDelete.Enabled = false;
+                }
+                else
+                {
+
+                    cmdDelete.Enabled = true;
+                }
+                /*if (ListView.SelectedItems.Count > 0)
                 {
                     ListViewItem selectedItem = ListView.SelectedItems[0];
 
@@ -282,26 +350,29 @@ namespace Data_Entry
                     selectedItem.SubItems[4].Text = txtAddress.Text;
                     selectedItem.SubItems[5].Text = cboCourse.Text;
                     selectedItem.SubItems[6].Text = cboYear.Text;
-                }
+                }*/
+               
 
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+
             }
         }
         private void cmdSave_Click(object sender, EventArgs e)
         {
-            string lname = txtLastName.Text;
-            string fname = txtFirstName.Text;
-            string mname = txtMiddleName.Text;
-            string address = txtAddress.Text;
-            string course = cboCourse.SelectedItem.ToString();
-            string year = cboYear.SelectedItem.ToString();
+          
             try
             {
-                if(!string.IsNullOrEmpty(lname) && !string.IsNullOrEmpty(fname) && !string.IsNullOrEmpty(address)
+                string lname = txtLastName.Text;
+                string fname = txtFirstName.Text;
+                string mname = txtMiddleName.Text;
+                string address = txtAddress.Text;
+                string course = cboCourse.SelectedItem?.ToString();
+                string year = cboYear.SelectedItem?.ToString();
+                if (!string.IsNullOrEmpty(lname) && !string.IsNullOrEmpty(fname) && !string.IsNullOrEmpty(address)
                     && !string.IsNullOrEmpty(course) && !string.IsNullOrEmpty(year))
                 {
                     string sql = "INSERT INTO tbl_students (last_name,first_name,middle_name,address,course,s_year) values " +
@@ -311,10 +382,13 @@ namespace Data_Entry
                     mycommand = new MySqlCommand(sql, myconn);
                     mycommand.ExecuteNonQuery();
                     MessageBox.Show("Record added!");
-                    loadData();
+                    // loadData();
+                    loadStudents(ListView);
                     myconn.Close();
                     myconn.Dispose();
                     resetAll();
+                    txtBoxDisabled();
+
                 }
                 else
                 {
@@ -334,6 +408,7 @@ namespace Data_Entry
             cmdUpdate.Enabled = true;
             cmdNew.Enabled = false;
             cmdDelete.Enabled = false;
+            cmdCancel.Enabled = true;
             txtBoxEnabled();
 
           
@@ -344,16 +419,13 @@ namespace Data_Entry
         {
             try
             {
-                string sql = "UPDATE `tbl_students` SET `last_name` = '" + txtLastName.Text + "', `first_name`= '" + txtFirstName.Text + "'," +
-                    "`middle_name`='" + txtMiddleName.Text + "', `address`='" + txtAddress.Text + "', `course`='" + cboCourse.Text + "',`s_year`='" + cboYear.Text + "'WHERE `tbl_students`.`id` = 2";
+                int id = int.Parse(txtID.Text);
+                string sql = "UPDATE tbl_students SET last_name = '" + txtLastName.Text + "', first_name = '" + txtFirstName.Text + "'," +
+                    "middle_name ='" + txtMiddleName.Text + "', address='" + txtAddress.Text + "', course ='" + cboCourse.Text + "', s_year= '" + cboYear.Text + "'WHERE id =" + id;
                 myconn = new MySqlConnection(mycon);
                 myconn.Open();
                 mycommand = new MySqlCommand(sql, myconn);
                 mycommand.ExecuteNonQuery();
-                myconn.Close();
-                myconn.Dispose();
-                MessageBox.Show("Record updated successfully.");
-
                 if (ListView.SelectedItems.Count > 0)
                 {
                     ListViewItem selectedItem = ListView.SelectedItems[0];                 
@@ -366,12 +438,14 @@ namespace Data_Entry
                     selectedItem.SubItems[6].Text = cboYear.Text;                
 
                 }
+                MessageBox.Show("Record updated successfully.", "Record Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ListView.SelectedItems[0].Selected = false;
                 resetAll();
                 cmdEdit.Enabled = false;           
                 cmdUpdate.Enabled = false;
                 cmdNew.Enabled = true;
-
+                myconn.Close();
+                myconn.Dispose();
 
 
             }
@@ -390,6 +464,48 @@ namespace Data_Entry
                 cmdDelete.Enabled = false;
                 cmdNew.Enabled = true;
                 resetAll();
+            }
+        }
+
+        private void ListView_DoubleClick(object sender, EventArgs e)
+        {
+            ListViewItem itm = ListView.SelectedItems[0];
+            txtID.Text = itm.Text;
+            txtLastName.Text = itm.SubItems[1].Text;
+            txtFirstName.Text = itm.SubItems[2].Text;
+            txtMiddleName.Text = itm.SubItems[3].Text;
+            txtAddress.Text = itm.SubItems[4].Text;
+            cboCourse.Text = itm.SubItems[5].Text;
+            cboYear.Text = itm.SubItems[6].Text;
+            txtBoxDisabled();
+            cmdDelete.Enabled = true;
+            cmdEdit.Enabled = true;
+        }
+
+        private void txtLastName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) &&
+            (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtFirstName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) &&
+        (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtMiddleName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) &&
+        (e.KeyChar != '.'))
+            {
+                e.Handled = true;
             }
         }
     }
